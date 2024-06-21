@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <title>Land Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
+
+</head>
+<body>
+
+    <div class="top-bar">
+        <button id="logoutButton" onclick="logout()"> Logout</button>
+    </div>
+
+    <div class="sidebar">
+        <br><br>
+        <br>
+        <button><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+        <button onclick="showSection('register')"><i class="fas fa-pen-alt"></i> Register Land</button>
+        <button onclick="showSection('getDetails')"><i class="fas fa-search"></i> Get Land Details</button>
+        <button onclick="showSection('getBuyerDetails')"><i class="fas fa-users"></i> Get Buyer Details</button>
+        <button onclick="showSection('requestedlands')"><i class="fas fa-user"></i> Requested Lands</button>
+        <button onclick="showSection('transferOwnership')"><i class="fas fa-exchange-alt"></i> Transfer Ownership</button>
+    </div>
+
+    <div class="content">
+        <div id="register" class="section" style="display: none;">
+            <div class="landre3">
+                <h2>Register Land</h2>
+                <input type="text" id="landLocation" placeholder="Land Location">
+                <input type="text" id="District" class="cm-text-input" placeholder="District">
+                <input type="number" id="landPrice" placeholder="Land Price">
+                <input type="number" id="landsize" placeholder="Land Size(SQFT)">
+                <input type="text" id="Plot_no" class="cm-text-input" placeholder="Plot No">
+                <input type="text" id="ownerName" placeholder="Owner Name">
+                <button onclick="registerLand()">Register Land</button>
+            </div>
+        </div>
+
+        <div id="getDetails" class="section" style="display: none;"> 
+            <div class="landre2">
+                <h2>Get Land Details</h2>
+                <button id="getDetailsButton" onclick="showDistrictInput()">Get Details</button>
+                <div id="districtInputContainer" style="display: none;">
+                    <input type="text" id="districtInput" placeholder="Enter District Name">
+                    <button onclick="getLandDetails1()" id="buttonid">Search</button>
+                    <div id="landDetails"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="getBuyerDetails" class="section" style="display: none;">
+            <div class="landre5">
+                <h2>Get Buyer Details</h2>
+                <button onclick="displayBuyerDetails()">Get Details</button>
+                <p id="buyerDetails"></p>
+            </div>
+        </div>
+
+        <div id="transferOwnership" class="section" style="display: none;">
+            <div class="landre1">
+                <h2>Transfer Ownership</h2>
+                <input type="number" id="landIdTransfer" placeholder="Land ID">
+                <input type="number" id="buyerIdTransfer" placeholder="Buyer ID">
+                <input type="text" id="landTransferpercent" placeholder="land in (%)">
+                <button onclick="transferOwnership()">Transfer Ownership</button>
+                <div id="transferDetails"></div>
+            </div>
+        </div>
+
+
+        <div id="requestedlands" class="section" style="display: none;">
+            <div class="landre2">
+                <h2>Requested Lands</h2>
+                <button onclick="RequetedLandDetails()">RequetedLandDetails</button>
+                <div id="requestedlandsdetails"></div>
+                <!-- "buy" button placed directly after the land details -->
+                <button id="redirectButton1" style="display: none;" onclick="redirectToIndex()">Buy</button>
+            </div>
+        </div>
+        
+        
+
+
+
+
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';   
+            });
+            document.getElementById(sectionId).style.display = 'block'; 
+
+              
+        if (sectionId === 'transferOwnership') {
+                var landId = JSON.parse(localStorage.getItem("selectedLandId"));
+                var buyerId = JSON.parse(localStorage.getItem("selectedBuyerId"));
+                if (landId && buyerId) {
+                    document.getElementById("landIdTransfer").value = landId;
+                    document.getElementById("buyerIdTransfer").value = buyerId;
+                }
+            }
+        }
+
+        function showDistrictInput() {
+            document.getElementById("districtInputContainer").style.display = "block";
+            document.getElementById("getDetailsButton").style.display = "none";
+        }
+ 
+        function logout() {
+        // Clear any user data or session
+        localStorage.clear();
+        // Redirect to login page
+        window.location.href = "login.html";
+    }
+
+    </script>
+
+    <script src="./block.js"></script>
+</body>
+</html>

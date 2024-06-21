@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+   
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header, footer {
+            background-color: rgba(0, 0, 0, 0.76);
+            color: white;
+            width: 100%;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            padding: 25px;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: white;
+            font-size: 26px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 15px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            text-transform: capitalize;
+        }
+
+        nav ul li a {
+            text-transform: capitalize;
+            text-decoration: none;
+            padding: 20px;
+            color: white;
+            font-size: 17px;
+        }
+
+        nav ul li a:hover {
+            color: rgb(15, 223, 205);
+        }
+
+        .id1 {
+            color: rgb(5, 5, 107);
+            margin-top: 50px;
+            text-align: center;
+            font-size: 35px;
+            animation: validation;
+            animation-duration: 2s;
+            animation-play-state: running;
+            animation-delay: 2s;
+            animation-direction: forwards;
+            transition-timing-function: ease-in-out;
+        }
+
+        .id1::first-letter {
+            color: rgb(223, 13, 13);
+            text-shadow: 2px 2px 2px rgb(12, 4, 136);
+            font-family: lucida calligraphy;
+        }
+
+        .contact1 {
+            width: 350px;
+            margin: 8vh auto 0 auto;
+            padding: 30px;
+            color: white;
+            background-color: rgb(128, 126, 126);
+            box-shadow: 3px rgb(128, 128, 128);
+            opacity: 0.7;
+            border-radius: 6px;
+            font-size: 18px;
+            margin-top: 2%;
+        }
+
+        .contact input {
+            display: flex;
+            flex-direction: column;  
+            border-radius: 5px;
+            border-color: white;
+            font-size: 14px;
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+        } 
+
+        .contact select {
+            display: flex;
+            flex-direction: column;  
+            border-color: none;
+            border-width: 2px;
+            border-radius: 5px;
+            font-size: 13px;
+            padding: 8px;
+            width: 100%;
+            margin-bottom: 10px;
+        } 
+
+        span {
+            color: rgb(255, 0, 17);
+            font-size: 15px;
+            align-items: center;
+            width: 100%;
+        }
+
+        #us4 {
+            cursor: pointer;
+            margin-top: 7px;
+            color: white;
+            width: 100%;
+            padding: 9px;
+            font-size: 15px;
+            border-radius: 4px;
+            background-color: blue;
+            margin-bottom: 1.5%;
+            border: none;
+        }
+
+        .check {
+            display: list-item;
+            background-color: rgb(102, 4, 4);
+            margin-top: 2px;
+            margin-bottom: 8px;
+            padding: 10px;
+            width: 10%;
+            display: flexbox;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+            background-image: url("b10.jpg");
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <h1>Event</h1>
+    </div>
+    <nav>
+        <ul>
+        </ul>
+    </nav>
+</header>
+
+<h2 class="id1">Login</h2>
+
+<div class="contact1">
+    <form method="post" onsubmit="return validate()" class="myForm">
+
+        <div class="contact">
+            <label>Role</label><br>
+            <select id="role" required>
+                <option value="">Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+            <b><span class="error" id="roleError"></span></b>
+        </div>
+
+        <div class="contact">
+            <label>Email</label>
+            <input type="email" id="email" required>
+            <b><span class="error" id="emailError"></span></b> 
+        </div>
+
+        <div class="contact">
+            <label>Password</label>
+            <input type="password" id="pass" required>
+            <b><span class="error" id="passError"></span></b> 
+        </div>
+
+        <input type="submit" name="submit" id="us4" value="Submit">
+    </form>
+
+    <p id="display"></p>
+</div>
+
+<footer>
+    <h2>&copy; All Right Reserved</h2>
+</footer>
+
+<script>
+function validate() {
+    var emailInput = document.getElementById("email");
+    var passInput = document.getElementById("pass");
+    var roleInput = document.getElementById("role");
+
+    var emailError = document.getElementById("emailError");
+    var passError = document.getElementById("passError");
+    var roleError = document.getElementById("roleError");
+
+    emailError.textContent = "";
+    passError.textContent = "";
+    roleError.textContent = "";
+
+    var isValid = true;
+
+    if (roleInput.value === "") {
+        roleError.innerHTML = "*Please select a role";
+        isValid = false;
+    }
+
+    if (passInput.value.length < 8) {
+        passError.innerHTML = "*Minimum length should be 8";
+        isValid = false;
+    }
+
+    if (emailInput.value.length > 30) {
+        emailError.innerHTML = "*Email length is too long";
+        isValid = false;
+    } else if (emailInput.value.length == 0) {
+        emailError.innerHTML = "*Enter required email";
+        isValid = false;
+    }
+
+    if (isValid) {
+        var role = roleInput.value;
+        var email = emailInput.value;
+        var password = passInput.value;
+
+        localStorage.setItem("userEmail", JSON.stringify(email));
+
+        if (role === "admin") {
+            if (email === "admin@kletech.ac.in" && password === "admin@123") {
+                window.location.href = "index.html";
+            } else {
+                emailError.innerHTML = "*Invalid admin email";
+                passError.innerHTML = "*Invalid admin password";
+                return false;
+            }
+        } else if (role === "user") {
+            window.location.href = "index1.html";
+        }
+        return false; // Prevent form submission to allow redirection
+    }
+
+    return false; // Prevent form submission if validation fails
+}
+
+
+document.getElementById("loginButton").addEventListener("click", function() {
+            const email = document.getElementById("email").value;
+            if (email) {
+                localStorage.setItem("userEmail", email);
+            } else {
+                document.getElementById("emailError").textContent = "Please enter a valid email.";
+            }
+        });
+</script>
+</body>
+</html>

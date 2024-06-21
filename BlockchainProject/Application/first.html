@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <!-- <link rel="stylesheet" href="style1.css"> -->
+    <!-- <script defer src="index.js"></script> -->
+    <style>
+        *{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+header,footer{
+  background-color: rgba(0, 0, 0, 0.76);
+  color:white;
+  width:100%;
+}
+
+
+
+footer{
+  position:absolute;
+  bottom:0;
+  padding:25px;
+  font-size: 15px;
+  text-align: center;
+}
+header h1{
+  color:white;
+  font-size: 26px;
+}
+
+header{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  padding:15px;
+}
+
+nav ul li{
+display: inline-block;
+text-transform: capitalize;
+}
+
+nav ul li a{
+   text-transform: capitalize;
+   text-decoration: none;
+   padding:20px;
+   color:white;
+   font-size: 17px;
+}
+
+
+.id1{
+  color:rgb(5, 5, 107);
+  margin-top: 30px;
+  text-align: center;
+  font-size: 35px;
+  animation:validation;
+  animation-duration: 2s;
+  animation-play-state: running;
+  animation-delay: 2s;
+  animation-direction: forwords;
+  transition-timing-function: ease-in-out;
+}
+
+@keyframes validation{
+  0%{
+    color:brown;
+    transform:translateX(20%);
+  }
+  45%{
+    color:green;
+  }
+  100%{
+    color:black;
+    
+  }
+} 
+.id1::first-letter{
+  color:rgb(223, 13, 13);
+  text-shadow: 2px 2px 2px rgb(12, 4, 136);
+  font-family: lucida calligraphy;
+}
+
+.contact1{
+  width: 350px;
+  margin:6vh auto 0 auto;
+  padding:30px;
+  background-color: whitesmoke;
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+ .contact input{
+    display: flex;
+    flex-direction: column;  
+    border-color: rgb(240, 174, 240);
+    border-radius: 5px;
+    /* display: block; */
+    font-size: 13px;
+    padding:8px;
+    width: 100%;
+} 
+
+span{
+  color:rgb(207, 23, 38);
+  font-size: 12px;
+  align-items: center;
+  width:100%;
+}
+
+#us4{
+   cursor: pointer;
+   margin-top: 7px;
+   color:white;
+   width:100%;
+   padding: 9px;
+   font-size:15px;
+   border-radius: 4px;
+   background-color: blue;
+   border: none;
+}
+.check{
+ display:list-item;
+ background-color: brown;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  padding:10px;
+  width:10%;
+  display: flexbox;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    overflow-x: hidden;
+    background-image: url("b10.jpg");
+}
+
+#login{
+    background-color: rgb(5, 190, 5);
+    padding-top: 9px;
+    padding-right: 15px;
+    padding-bottom: 9px;
+    padding-left:15px ;
+    border-radius: 3px;
+}
+
+a:hover{
+    color:rgb(15, 15, 15);
+}
+
+#login:hover{
+    background-color:greenyellow;
+}
+
+#kavya1{
+    margin-top: 8%;
+    margin-left: -17%;
+    font-size: 40px;
+    color: #f4f4f4;
+}
+
+#kavya1::first-letter{
+    color: #0e0242;
+    font-size: 50px;
+    text-shadow: 1px 1px #f4f4f4;
+    font-family: lucida calligraphy;
+}
+
+#kavya2{
+    margin-top: 0.5%;
+    margin-left: 3%;
+    font-size: 50px;
+    font-weight: bold;
+    color: #0e0242;
+    text-shadow: 1px 1px #f4f4f4;
+}
+
+#kavya3{
+    color:#f4f4f4;
+    font-size: 20px;
+    font-weight:550;
+}
+
+    </style>
+</head>
+<body>
+
+ <header>
+    <div class="logo">
+       <h1>Event</h1>
+    </div>
+    <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="Login.html" id="login">Login</a></li>
+    </ul>
+  </nav>
+ </header>
+   
+ <h1 id="kavya1">WelCome to </h1><p id="kavya2">Digital Land Registry</p>
+<br>
+<br>
+<p id="kavya3">Our relationship with land mirrors our relationship with ourselves - complex, evolving, and deeply intertwined.</p>
+
+<footer>
+    <h2>&copy:All Right Reserved</h2>
+</footer>
+
+
+
+</body>

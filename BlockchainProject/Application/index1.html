@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <title>Land Registration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CDN -->
+</head>
+<body>
+
+    <div class="top-bar">
+        <button id="logoutButton" onclick="logout()"> Logout</button>
+    </div>
+    
+<div class="sidebar">
+    <br><br>
+    <br>
+    <button><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+    <button onclick="showSection('getDetails')"><i class="fas fa-search"></i> Get Land Details</button>
+    <button onclick="showSection('BuyerDetails')"><i class="fas fa-user"></i> Add Buyer Details</button>
+</div>
+
+<div class="content">
+    <div id="getDetails" class="section" style="display: none;">
+        <div class="landre2">
+            <h2>Get Land Details</h2>
+            <button id="getDetailsButton" onclick="showDistrictInput()">Get Details</button>
+            <div id="districtInputContainer" style="display: none;">
+                <input type="text" id="districtInput" placeholder="Enter District Name">
+                <!-- <input type="number" id="buyerId" placeholder="Enter Buyer ID"> -->
+                <button onclick="getLandDetails()" id="buttonid">Search</button>
+                <div id="landDetails"></div>
+                <button id="getDetailsButton1">Buy</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="BuyerDetails" class="section" style="display: none;">
+        <div class="landre">
+            <h2>Add Buyer Details</h2>
+            <input type="text" id="name" placeholder="Name">
+            <input type="text" id="district" placeholder="District">
+            <input type="email" id="email" placeholder="Email">
+            <input type="number" id="age" placeholder="Age">
+            <input type="text" id="addressInfo" placeholder="Address">
+            <button onclick="addBuyerDetails()">Add Buyer Details</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.display = 'none';
+        });
+        var selectedSection = document.getElementById(sectionId);
+        selectedSection.style.display = 'block';
+        
+        if (sectionId === 'BuyerDetails') {
+                var storedEmail = JSON.parse(localStorage.getItem("userEmail"));
+                if (storedEmail) {
+                    document.getElementById("email").value = storedEmail;
+                }
+            }
+    }
+
+    function showDistrictInput() {
+        document.getElementById("districtInputContainer").style.display = "block";
+        document.getElementById("getDetailsButton").style.display = "none";
+    }
+
+    function logout() {
+        // Clear any user data or session
+        localStorage.clear();
+        // Redirect to login page
+        window.location.href = "login.html";
+    }
+
+</script>
+
+<script src="./block.js"></script>
+</body>
+</html>
